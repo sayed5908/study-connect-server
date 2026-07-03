@@ -14,7 +14,7 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 app.use(cors({
   origin: [
-    "https://api-study-connect.onrender.com",
+    "http://localhost:5173",
     "https://study-connect-e0a65.web.app",
     "https://study-connect-e0a65.firebaseapp.com"
   ],

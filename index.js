@@ -13,7 +13,7 @@ const cookieParser = require("cookie-parser");
 
 app.use(cookieParser());
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://api-study-connect.onrender.com",
   credentials: true,
 }));
 app.use(express.json());
@@ -206,7 +206,7 @@ async function run() {
 
     //update assignment while given marks
 
-  app.patch('/submittedAssignments/:id', async(req, res) =>{
+  app.patch('/submittedAssignments/:id', verifyToken, async(req, res) =>{
     const {id} = req.params;
 
     const result = await submittedAssignmentCollection.updateOne(

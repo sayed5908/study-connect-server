@@ -13,7 +13,11 @@ const cookieParser = require("cookie-parser");
 
 app.use(cookieParser());
 app.use(cors({
-  origin: "https://api-study-connect.onrender.com",
+  origin: [
+    "https://api-study-connect.onrender.com",
+    "https://study-connect-e0a65.web.app",
+    "https://study-connect-e0a65.firebaseapp.com"
+  ],
   credentials: true,
 }));
 app.use(express.json());

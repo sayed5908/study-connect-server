@@ -113,6 +113,22 @@ async function run() {
         res.send(result);
     })
 
+    //get user
+
+   app.get('/users/:email', verifyToken, async (req, res) => {
+  const email = req.params.email;
+
+   if (email !== req.user.email) {
+    return res.status(403).send({ message: "Forbidden Access" });
+  }
+
+  const result = await usersCollection.findOne({
+    email: email,
+  });
+
+  res.send(result);
+});
+
     //Assignment related apis
 
     app.post('/assignment', verifyToken, async(req, res) =>{
@@ -190,7 +206,7 @@ async function run() {
 
     //update assignment while given marks
 
-  app.patch('/submittedAssignments/:id', verifyToken, async(req, res) =>{
+  app.patch('/submittedAssignments/:id', async(req, res) =>{
     const {id} = req.params;
 
     const result = await submittedAssignmentCollection.updateOne(
@@ -229,6 +245,13 @@ async function run() {
    app.get('/myAttempts/:email', verifyToken, async(req, res) =>{
 
     const email = req.params.email;
+
+      if (email !== req.user.email) {
+    return res.status(403).send({
+      message: "Forbidden Access",
+    });
+  }
+
 
       const result = await submittedAssignmentCollection.find(
         {examineeEmail: email}).toArray();

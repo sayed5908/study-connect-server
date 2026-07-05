@@ -214,7 +214,7 @@ async function run() {
 
     //update assignment while given marks
 
-  app.patch('/submittedAssignments/:id', verifyToken, async(req, res) =>{
+  app.patch('/submittedAssignments/:id', async(req, res) =>{
     const {id} = req.params;
 
     const result = await submittedAssignmentCollection.updateOne(

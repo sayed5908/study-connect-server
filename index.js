@@ -139,7 +139,7 @@ async function run() {
 
     //Assignment related apis
 
-    app.post('/assignment', verifyToken, async(req, res) =>{
+    app.post('/assignment', async(req, res) =>{
       const assignmentData = req.body;
       const result = await assignmentCollection.insertOne(assignmentData);
       res.send(result);

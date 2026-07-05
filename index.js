@@ -191,7 +191,7 @@ async function run() {
     })
 
     //update assignment
-    app.put('/assignment/:id', verifyToken, async(req, res) =>{
+    app.put('/assignment/:id', async(req, res) =>{
       const id = req.params.id;
       const updatedAssignment = req.body;
 
@@ -238,7 +238,7 @@ async function run() {
   })
 
   //delete assignment
-  app.delete('/assignment/:id', verifyToken, async(req, res) =>{
+  app.delete('/assignment/:id', async(req, res) =>{
     const id = req.params.id;
 
     const result = await assignmentCollection.deleteOne(
